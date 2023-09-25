@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import WeatherDetail from "./components/WeatherDetail";
+import "./styles/Search.scss";
+import "./styles/WeatherDetail.scss";
+
 const locationList = [
   {
     id: 1581130,
