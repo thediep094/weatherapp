@@ -13,6 +13,7 @@ const Search = () => {
       payload: {
         q: input,
       },
+      style: "weakly",
     });
   };
 
