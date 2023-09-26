@@ -4,6 +4,7 @@ const initialState = {
   weather: null,
   forecasts: null,
   currentWeather: null,
+  currentType: "weakly",
   isLoading: false,
   error: "",
 };
@@ -48,6 +49,11 @@ export const weatherSlice = createSlice({
     },
     changeError: (state) => {
       state.error = "";
+    },
+
+    changeType: (state, action) => {
+      console.log(action.payload);
+      state.currentType = action.payload;
     },
   },
 });

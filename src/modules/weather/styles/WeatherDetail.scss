@@ -146,6 +146,7 @@
   top: -100vh;
   max-width: 100%;
   transition: 0.3s;
+  z-index: 999;
   &.active {
     top: 50px;
   }

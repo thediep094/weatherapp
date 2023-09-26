@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Icons from "../../../components/Icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { convertTextTV } from "../../../services/api/convertTextTV";
 import { Alert } from "@mui/material";
 
 const Search = () => {
   const [input, setInput] = useState("");
+  const currentType = useSelector((state) => state.weather.currentType);
   const dispatch = useDispatch();
   const submit = () => {
     dispatch({
@@ -13,7 +14,7 @@ const Search = () => {
       payload: {
         q: input,
       },
-      style: "weakly",
+      style: currentType,
     });
   };
 

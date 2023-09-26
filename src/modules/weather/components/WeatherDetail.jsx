@@ -11,14 +11,15 @@ import { Alert } from "@mui/material";
 import { weatherActions } from "../redux/weatherSlice";
 
 const WeatherDetail = () => {
-  const [currentType, setCurrentType] = useState("weakly");
+  // const [currentType, setCurrentType] = useState("weakly");
   const dispatch = useDispatch();
+  const currentType = useSelector((state) => state.weather.currentType);
   const loading = useSelector((state) => state.weather.isLoading);
   const weatherList = useSelector((state) => state.weather.forecasts);
   const currentWeather = useSelector((state) => state.weather.currentWeather);
   const error = useSelector((state) => state.weather.error);
   let timeoutId;
-
+  console.log(currentType);
   useEffect(() => {
     if (error != "") {
       timeoutId = setTimeout(() => {
@@ -32,7 +33,6 @@ const WeatherDetail = () => {
 
   const chooseType = (type) => {
     if (type == "weakly") {
-      setCurrentType("weakly");
       dispatch({
         type: "FETCH_WEATHER",
         payload: {
@@ -41,7 +41,6 @@ const WeatherDetail = () => {
         style: "weakly",
       });
     } else {
-      setCurrentType("hourly");
       dispatch({
         type: "FETCH_WEATHER",
         payload: {
