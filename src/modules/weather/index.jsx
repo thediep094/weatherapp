@@ -12,6 +12,7 @@ const WeatherModule = () => {
       payload: {
         q: "hanoi",
       },
+      style: "weakly",
     });
   }, []);
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "../../../assets/Image.png";
 
 import "swiper/css";
@@ -11,6 +11,7 @@ import { Alert } from "@mui/material";
 import { weatherActions } from "../redux/weatherSlice";
 
 const WeatherDetail = () => {
+  const [currentType, setCurrentType] = useState("weakly");
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.weather.isLoading);
   const weatherList = useSelector((state) => state.weather.forecasts);
@@ -28,6 +29,29 @@ const WeatherDetail = () => {
       };
     }
   }, [error]);
+
+  const chooseType = (type) => {
+    if (type == "weakly") {
+      setCurrentType("weakly");
+      dispatch({
+        type: "FETCH_WEATHER",
+        payload: {
+          q: weatherList.city.name,
+        },
+        style: "weakly",
+      });
+    } else {
+      setCurrentType("hourly");
+      dispatch({
+        type: "FETCH_WEATHER",
+        payload: {
+          q: weatherList.city.name,
+        },
+        style: "hourly",
+      });
+    }
+  };
+
   return (
     <div className="weather-detail">
       <img src={Image} alt="" className="weather-detail__background" />
@@ -61,6 +85,24 @@ const WeatherDetail = () => {
             />
           </div>
           <div className="weakly-forecast">
+            <div className="weakly-forecast__choose">
+              <div
+                className={`weakly-forecast__choose-item ${
+                  currentType == "hourly" ? "active" : ""
+                }`}
+                onClick={() => chooseType("hourly")}
+              >
+                Hourly forecast
+              </div>
+              <div
+                className={`weakly-forecast__choose-item ${
+                  currentType == "weakly" ? "active" : ""
+                }`}
+                onClick={() => chooseType("weakly")}
+              >
+                Weakly forecast
+              </div>
+            </div>
             <Swiper
               spaceBetween={12}
               slidesPerView={5}
