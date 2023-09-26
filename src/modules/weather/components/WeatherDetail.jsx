@@ -99,7 +99,7 @@ const WeatherDetail = () => {
                 }`}
                 onClick={() => chooseType("weakly")}
               >
-                Weakly forecast
+                3 Hour forecast
               </div>
             </div>
             <Swiper
